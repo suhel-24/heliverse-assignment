@@ -19,7 +19,7 @@ const Users = () => {
       setLoading(true);
       //https://heliverse-assignment-production.up.railway.app
       const response = await axios.get(
-        "http://localhost:3000/api/users/"
+        "https://heliverse-assignment-yioz.onrender.com/api/users/"
       );
       const data = await response.data;
       setUsers(data.users);
@@ -31,7 +31,7 @@ const Users = () => {
   }, []);
 
   const getUsers = async () => {
-    let baseUrl = `http://localhost:3000/api/users?page=${currentPage}`;
+    let baseUrl = `https://heliverse-assignment-yioz.onrender.com/api/users?page=${currentPage}`;
     if (name !== "") baseUrl += `&name=${name}`;
     if (status !== "") baseUrl += `&available=${status}`;
     if (domain !== "") baseUrl += `&domain=${domain}`;

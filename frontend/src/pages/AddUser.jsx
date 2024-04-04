@@ -29,7 +29,7 @@ const AddUser = () => {
       const dataWithId = { ...formData, id };
 
       // Make POST request to backend API using Axios
-      const response = await axios.post('http://localhost:3000/api/users/', dataWithId);
+      const response = await axios.post('https://heliverse-assignment-yioz.onrender.com/api/users/', dataWithId);
 
       // Handle successful response
       console.log('Form submitted successfully', response.data);

@@ -58,7 +58,7 @@ const Team = () => {
   useEffect(() => {
     const getTeam = async () => {
       const response = await axios.get(
-        "http://localhost:3000/api/team/all"
+        "https://heliverse-assignment-yioz.onrender.com/api/team/all"
       );
       const data = await response.data;
       setTeams(data);
@@ -70,7 +70,7 @@ const Team = () => {
     if (teamId === "") return;
 
     const response = await axios.get(
-      `http://localhost:3000/api/team/${teamId}`
+      `https://heliverse-assignment-yioz.onrender.com/api/team/${teamId}`
     );
     const data = await response.data;
     setTeams([data]);
