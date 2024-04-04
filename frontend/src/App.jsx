@@ -1,35 +1,38 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { BrowserRouter as Router, Routes, Route ,Outlet} from "react-router-dom";
+import Sidebar from "./components/Sidebar";
+import Profile from "./components/Profile";
+import AddUser from "./pages/AddUser";
+import Users from "./pages/Users";
+import Team from "./pages/Team";
+import { Toaster } from "react-hot-toast";
 
-function App() {
-  const [count, setCount] = useState(0)
+const Layout = () => (
+  <div className="flex flex-col md:flex-row items-center h-screen w-full md:overflow-y-hidden">
+    <Toaster toastOptions={{ duration: 4000 }} />
+    <Sidebar />
+    <Outlet />
+    <div className="hidden md:flex h-full basis-[40%] bg-[#1E212A]">
+      <Profile />
+    </div>
+  </div>
+);
 
-  return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
-}
+const App = () => (
+  <Router>
+    <Routes>
+      <Route path="/" element={<Layout />}>
+        <Route index element={<Users />} />
+        <Route path="/team" element={<Team />} />
+      </Route>
+      <Route path="/profile" element={<Profile />} />
+      <Route path="/adduser" element={<AddUser />} />
 
-export default App
+      <Route path="/create-team" element={<Layout />}>
+        <Route index element={<Profile />} />
+      </Route>
+      <Route path="*" element={<h1>404</h1>} />
+    </Routes>
+  </Router>
+);
+
+export default App;
